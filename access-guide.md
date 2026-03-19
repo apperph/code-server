@@ -1,4 +1,4 @@
-# Accessing Code-Server
+# Code-Server Access and Troubleshooting Guide
 
 This guide explains how to access code-server in your browser, connect to the code-server instance itself, and provides important notes for troubleshooting.
 
