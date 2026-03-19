@@ -1,6 +1,6 @@
 # Accessing Code-Server
 
-This guide explains how to access your remote `code-server` instance and important notes for troubleshooting.
+This guide explains how to access code-server in your browser, connect to the code-server instance itself, and provides important notes for troubleshooting.
 
 ---
 
@@ -26,7 +26,7 @@ https://vscode.apperlabs.com/<user1>/
 ![Alt text](./images/access-code-server-1a.png)
 
 ![Alt text](./images/access-code-server-1b.png)
-*Noted: The Password is `DevPassword2026!`*
+*Note: The Password is `DevPassword2026!`*
 
 ![Alt text](./images/access-code-server-1c.png)
 ---
