@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus-self'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'springboot-labs'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets:
+        - 'user1:8081'
+        - 'user2:8081'
+        - 'user3:8081'
+        - 'user4:8081'
+        - 'user5:8081'

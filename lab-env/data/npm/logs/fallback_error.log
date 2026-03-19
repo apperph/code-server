@@ -1,0 +1,1 @@
+2026/03/19 02:53:43 [warn] 176#176: could not build optimal proxy_headers_hash, you should increase either proxy_headers_hash_max_size: 512 or proxy_headers_hash_bucket_size: 64; ignoring proxy_headers_hash_bucket_size

@@ -1,0 +1,121 @@
+version: '3.8'
+
+networks:
+  lab-net:
+    driver: bridge
+
+services:
+  # Nginx Proxy Manager
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: npm
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./data/npm:/data
+      - ./data/letsencrypt:/etc/letsencrypt
+    networks:
+      - lab-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--web.external-url=https://vscode.apperlabs.com/prometheus/"
+    volumes:
+      - ./data/prometheus:/etc/prometheus
+    networks:
+      - lab-net
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_ROOT_URL=https://vscode.apperlabs.com/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    networks:
+      - lab-net
+
+  user1:
+    image: codercom/code-server:latest
+    container_name: user1
+    environment:
+      - PASSWORD=labuser1
+    networks:
+      - lab-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+    volumes:
+      - ./data/user1:/home/coder/project
+
+  user2:
+    image: codercom/code-server:latest
+    container_name: user2
+    environment:
+      - PASSWORD=labuser2
+    networks:
+      - lab-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+    volumes:
+      - ./data/user2:/home/coder/project
+
+  user3:
+    image: codercom/code-server:latest
+    container_name: user3
+    environment:
+      - PASSWORD=labuser3
+    networks:
+      - lab-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+    volumes:
+      - ./data/user3:/home/coder/project
+
+  user4:
+    image: codercom/code-server:latest
+    container_name: user4
+    environment:
+      - PASSWORD=labuser4
+    networks:
+      - lab-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+    volumes:
+      - ./data/user4:/home/coder/project
+
+  user5:
+    image: codercom/code-server:latest
+    container_name: user5
+    environment:
+      - PASSWORD=labuser5
+    networks:
+      - lab-net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+    volumes:
+      - ./data/user5:/home/coder/project
