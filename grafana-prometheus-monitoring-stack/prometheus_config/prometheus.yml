@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    # This scrapes the Prometheus server itself
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'mysql-learners'
+    # This is where you list your 30 learner instances
+    static_configs:
+      - targets:
+          - '13.229.62.208:9104'
+    # Optional: Add relabeling so you can identify learners by IP in Grafana
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
